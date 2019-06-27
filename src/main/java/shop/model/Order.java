@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
     private final Account account;
@@ -62,4 +63,33 @@ public class Order {
                 .setScale(2, RoundingMode.HALF_UP);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Float.compare(order.discount, discount) == 0 &&
+                Objects.equals(account, order.account) &&
+                Objects.equals(discountPolicy, order.discountPolicy) &&
+                Objects.equals(items, order.items) &&
+                status == order.status &&
+                Objects.equals(address, order.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(account, discountPolicy, items, status, address, discount);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "account=" + account +
+                ", discountPolicy=" + discountPolicy +
+                ", items=" + items +
+                ", status=" + status +
+                ", address=" + address +
+                ", discount=" + discount +
+                '}';
+    }
 }
