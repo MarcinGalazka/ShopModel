@@ -1,4 +1,7 @@
 package shop.model;
 
-public class OrderStatus {
+public enum OrderStatus {
+    IN_PROGRESS,
+    SENT,
+    DELIVERED
 }
